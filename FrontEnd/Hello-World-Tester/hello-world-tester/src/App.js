@@ -1,33 +1,32 @@
 import React from 'react';
 import './App.css';
-import helloWorld from './URLTest.json'
 import axios from 'axios'
 
 function App() {
-  console.log(helloWorld.url);
-  
+  console.log(process.env.REACT_APP_SIMULATOR_HOST);
+  var greeting = process.env.REACT_APP_SIMULATOR_HOST + '/greeting'
   const [data, setData] = React.useState('');
-  const [numReq, setNumReq]= React.useState(0);
+  const [numReq, setNumReq] = React.useState(0);
 
-  function testUrl(){
-    axios.get(helloWorld.url).then(response => {
+  function testUrl() {
+    axios.get(greeting).then(response => {
       setData(response.data.content);
       setNumReq(response.data.id);
     });
   }
 
-  return (    
+  return (
     <div className="App">
-      <header className="App-header">  
-     
-        <button  className="btn btn-light text-dark mt-3" onClick={testUrl} >
-        Test the URL
-        </button>   
-        <p className="App-intro">{numReq>0
-        ?"Request: "+numReq
-      :''
-       }</p>  
-        <p className="App-intro">{data}</p>      
+      <header className="App-header">
+
+        <button className="btn btn-light text-dark mt-3" onClick={testUrl} >
+          Test the URL
+        </button>
+        <p className="App-intro">{numReq > 0
+          ? "Request: " + numReq
+          : ''
+        }</p>
+        <p className="App-intro">{data}</p>
       </header>
     </div>
   );
