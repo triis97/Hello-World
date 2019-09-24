@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import axios from 'axios'
 
-function App() {
-  console.log(process.env.REACT_APP_SIMULATOR_HOST);
+function App() { 
+  // var greeting = process.env.REACT_APP_SIMULATOR_HOST + '/greeting'
   var greeting = process.env.REACT_APP_SIMULATOR_HOST + '/greeting'
+  console.log(greeting);
   const [data, setData] = React.useState('');
   const [numReq, setNumReq] = React.useState(0);
 

@@ -24,7 +24,7 @@ RUN ./gradlew bootJar -i
 FROM openjdk:11-jre
 COPY --from=builder /usr/app/build/libs/*.jar application.jar
 
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
+# ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+# RUN chmod +x /wait
 
-ENTRYPOINT WAIT_HOSTS=$DB_HOST /wait && java -jar application.jar
+ENTRYPOINT java -jar application.jar

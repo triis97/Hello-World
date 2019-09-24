@@ -10,4 +10,7 @@ COPY . .
 COPY --from=prepare /home/node/app/node_modules node_modules
 RUN yarn build
 
+#FROM nginx
+#COPY --from=builder /home/node/app/dist /usr/share/nginx/html
+
 CMD ["npm", "start"]
