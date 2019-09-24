@@ -1,3 +1,3 @@
-package com.example.Hello.World
+package Hello
 
 data class Greeting(val id: Long, val content:String)

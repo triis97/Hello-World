@@ -1,4 +1,4 @@
-package com.example.Hello.World
+package Hello
 
 import org.junit.Test
 import org.junit.runner.RunWith

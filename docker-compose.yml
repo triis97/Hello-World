@@ -1,0 +1,25 @@
+version: "3"
+services:
+##########################
+#Setup node container
+##########################
+  frontend:
+    build: ./FrontEnd/Hello-World-Tester/hello-world-tester
+    expose: 
+      - ${APP_FRONTEND_PORT}
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_PORT: ${APP_FRONTEND_PORT}
+    ports:
+      - ${APP_FRONTEND_PORT}:${APP_FRONTEND_PORT}   
+   # command: npm start
+##########################
+#Setup API container
+##########################
+  backend: 
+    build: ./BackEnd\Hello-World-API
+    expose:
+     - ${API_APP_PORT}
+    ports:
+     - ${API_APP_PORT}:${API_APP_PORT}
+
