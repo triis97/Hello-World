@@ -17,7 +17,7 @@ services:
 #Setup API container
 ##########################
   backend: 
-    build: ./BackEnd\Hello-World-API
+    build: ./BackEnd/Hello-World-API
     expose:
      - 8080
     ports:
