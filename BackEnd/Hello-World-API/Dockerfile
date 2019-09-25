@@ -8,7 +8,7 @@ WORKDIR /usr/app/
 COPY gradlew /usr/app/
 COPY gradle /usr/app/gradle
 
-RUN dos2unix ./gradlew
+RUN dos2unix ./gradlew && chmod +x gradlew
 # download gradle
 RUN ./gradlew --continue
 
@@ -18,7 +18,7 @@ RUN ./gradlew build -i || true
 
 # build
 COPY . .
-RUN dos2unix ./gradlew
+RUN dos2unix ./gradlew && chmod +x gradlew
 RUN ./gradlew bootJar -i
 
 FROM openjdk:11-jre
