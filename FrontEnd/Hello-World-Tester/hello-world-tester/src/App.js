@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios'
-export const SIMULATOR_HOST = process.env.REACT_APP_SIMULATOR_HOST;
 
 function App() {
-    var greeting = window.location.href + '/api/greeting'
+    var greeting = window.location.href + 'api/greeting'
     console.log(greeting);
 
     const [data, setData] = React.useState('');
