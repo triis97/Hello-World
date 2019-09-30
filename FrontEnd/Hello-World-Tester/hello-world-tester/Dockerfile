@@ -10,9 +10,9 @@ COPY . .
 COPY --from=prepare /home/node/app/node_modules node_modules
 RUN yarn build
 
-FROM nginx
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
+FROM nginx:1.16.0-alpine
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /home/node/app/build/ /usr/share/nginx/html
-COPY --from=builder /home/node/app/.env.development /usr/share/nginx
+#COPY --from=builder /home/node/app/.env.development /usr/share/nginx
 
  #CMD ["npm", "start"]
