@@ -4,12 +4,16 @@ services:
 #Setup node container
 ##########################
   frontend:
-    build: ./FrontEnd/Hello-World-Tester/hello-world-tester    
+    build: 
+      context: ./FrontEnd/Hello-World-Tester/hello-world-tester    
+      args:
+        BACKEND_ENDPOINT: backend
+        BACKEND_PORT: 8080
     environment:
       REACT_APP_SIMULATOR_HOST: backend:8080
       APP_SERVER_PORT: 3000
     ports:
-      - 3000:80
+      - 3000:8080
    # command: npm start
 ##########################
 #Setup API container
