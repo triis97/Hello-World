@@ -27,4 +27,5 @@ COPY --from=builder /usr/app/build/libs/*.jar application.jar
 # ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 # RUN chmod +x /wait
 
-ENTRYPOINT java -jar application.jar
+#ENTRYPOINT java -jar application.jar
+CMD java -jar application.jar
