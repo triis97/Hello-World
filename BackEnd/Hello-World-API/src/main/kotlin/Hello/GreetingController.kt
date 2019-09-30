@@ -11,7 +11,7 @@ class GreetingController {
 
     val counter=AtomicLong()
     @CrossOrigin("*")
-    @GetMapping("/greeting")
+    @GetMapping("/api/greeting")
     fun greeting()=
             Greeting(counter.incrementAndGet(), "Hello World!")
 }

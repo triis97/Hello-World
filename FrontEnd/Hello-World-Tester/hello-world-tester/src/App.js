@@ -4,7 +4,7 @@ import axios from 'axios'
 export const SIMULATOR_HOST = process.env.REACT_APP_SIMULATOR_HOST;
 
 function App() { 
-  var greeting = process.env.REACT_APP_SIMULATOR_HOST + '/greeting'
+  var greeting = process.env.REACT_APP_SIMULATOR_HOST + '/api/greeting'
   console.log(greeting);
 
   const [data, setData] = React.useState('');
