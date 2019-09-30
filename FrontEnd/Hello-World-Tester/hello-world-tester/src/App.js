@@ -3,35 +3,39 @@ import './App.css';
 import axios from 'axios'
 export const SIMULATOR_HOST = process.env.REACT_APP_SIMULATOR_HOST;
 
-function App() { 
-  var greeting = process.env.REACT_APP_SIMULATOR_HOST + '/api/greeting'
-  console.log(greeting);
+function App() {
+    var greeting = window.location.href + '/api/greeting'
+    console.log(greeting);
 
-  const [data, setData] = React.useState('');
-  const [numReq, setNumReq] = React.useState(0);
+    const [data, setData] = React.useState('');
+    const [numReq, setNumReq] = React.useState(0);
 
-  function testUrl() {
-    axios.get(greeting).then(response => {
-      setData(response.data.content);
-      setNumReq(response.data.id);
-    });
-  }
+    function testUrl() {
+        axios.get(greeting).then(response => {
+            setData(response.data.content);
+            setNumReq(response.data.id);
+        });
+    }
 
-  return (
-    <div className="App">
-      <header className="App-header">
+    return ( <
+        div className = "App" >
+        <
+        header className = "App-header" >
 
-        <button className="btn btn-light text-dark mt-3" onClick={testUrl} >
-          Test the URL
-        </button>
-        <p className="App-intro">{numReq > 0
-          ? "Request: " + numReq
-          : ''
-        }</p>
-        <p className="App-intro">{data}</p>
-      </header>
-    </div>
-  );
+        <
+        button className = "btn btn-light text-dark mt-3"
+        onClick = { testUrl } >
+        Test the URL <
+        /button> <
+        p className = "App-intro" > {
+            numReq > 0 ?
+            "Request: " + numReq :
+                ''
+        } < /p> <
+        p className = "App-intro" > { data } < /p> <
+        /header> <
+        /div>
+    );
 }
 
 export default App;
