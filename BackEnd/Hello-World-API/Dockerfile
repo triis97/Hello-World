@@ -22,10 +22,7 @@ RUN dos2unix ./gradlew && chmod +x gradlew
 RUN ./gradlew bootJar -i
 
 FROM openjdk:11-jre
-COPY --from=builder /usr/app/build/libs/Hello-World*.jar /application.jar
-#RUN cp /usr/app/build/libs/Hello-World*.jar /application.jar
+COPY --from=builder /usr/app/build/libs/*.jar /application.jar
+COPY run_application.sh /
 
-# ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-# RUN chmod +x /wait
-
-ENTRYPOINT java -jar /application.jar
+ENTRYPOINT [ "sh", "/run.sh" ] 
