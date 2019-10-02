@@ -1,0 +1,56 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    application: ngix-sample
+  name: ngix-sample
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: ngix-sample
+        application: ngix-sample
+    spec:
+      containers:
+        - name: ngix-sample
+          image: bitnami/nginx:latest
+          env:
+            - name: SIMULATOR_HOST
+              value: "simulator:8080"
+            - name: REPLAY_HOST
+              value: "replay:8090"
+          ports:
+            - containerPort: 8080
+              protocol: TCP         
+  strategy: 
+    type: "Rolling"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngix-sample
+spec:
+  type: ClusterIP
+  ports:
+    - name: ngix-sample
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    application: ngix-sample
+--- 
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: ngix-sample
+  name: ngix-sample
+spec:
+  host: 
+  port:
+    targetPort: ngix-sample
+  to:
+    kind: Service
+    name: ngix-sample
+    weight: 100
