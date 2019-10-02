@@ -23,6 +23,5 @@ RUN ./gradlew bootJar -i
 
 FROM openjdk:11-jre
 COPY --from=builder /usr/app/build/libs/*.jar /application.jar
-COPY run_application.sh /
-
+COPY run.sh /
 ENTRYPOINT [ "sh", "/run.sh" ] 
