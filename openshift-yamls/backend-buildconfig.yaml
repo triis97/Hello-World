@@ -1,0 +1,24 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: hello-world-backend
+  labels:
+    application: simulator
+spec:
+  strategy:
+    type: Docker
+    dockerStrategy:
+      noCache: true
+  source:
+    type: Git
+    contextDir: /BackEnd/Hello-World-API
+    git:
+      ref: master
+      uri: 'https://github.com/triis97/Hello-World.git'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hello-world-backend:latest'
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
