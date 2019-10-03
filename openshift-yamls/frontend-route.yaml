@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: hello-world-frontend
+  name: hello-world-frontend
+spec:
+  host: 
+  port:
+    targetPort: hello-world-frontend-port
+  to:
+    kind: Service
+    name: hello-world-frontend-service
+    weight: 100

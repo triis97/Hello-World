@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: hello-world-frontend
+  labels:
+    application: hello-world-frontend
+spec:
+  strategy:
+    type: Docker
+    dockerStrategy:
+      noCache: true
+      buildArgs:
+        - name: "BACKEND_ENDPOINT"
+          value: "hello-world-backend-service"
+        - name: "BACKEND_PORT"
+          value: "8080"
+  source:
+    type: Git
+    contextDir: /FrontEnd/Hello-World-Tester/hello-world-tester
+    git:
+      ref: master
+      uri: 'https://github.com/triis97/Hello-World.git'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hello-world-frontend:latest'
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
